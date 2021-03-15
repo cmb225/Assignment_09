@@ -62,13 +62,13 @@ class DataProcessor:
             row (DC.CD): CD object that matches cd_idx
 
         """
-        CD_found = False
+        CD_found = False #flag to determine if CD found
         try:
             for cd in table:
-                if cd.cd_id == int(cd_idx):
+                if cd.cd_id == int(cd_idx): #if id number of object matches input id number
                     CD_found = True
-                    return cd
-            if CD_found == False:
+                    return cd #returns CD object once found
+            if CD_found == False: #if CD not found after for loop, raising Exception
                 raise Exception('CD not found.')
         except ValueError as e:
             print('CD ID must be an Integer!', e, e.__doc__, type(e), sep='\n')
@@ -96,8 +96,8 @@ class DataProcessor:
         position, title, length = track_info
         try:
             position = int(position)
-            track = DC.Track(position, title, length)
-            cd.add_track(track)
+            track = DC.Track(position, title, length) #creating track object
+            cd.add_track(track) #adding track object to cd object
         except ValueError:
             print('Position must be an Integer!\n')
         except Exception as e:

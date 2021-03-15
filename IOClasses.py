@@ -50,7 +50,7 @@ class FileIO:
                 for disc in lst_inventory:
                     file.write(disc.get_record())
             with open(file_name_tracks, 'w') as file:
-                for disc in lst_inventory: #first cycle through each CD
+                for disc in lst_inventory: #cycling through each CD
                     cd_id = disc.cd_id #save CD ID into variable
                     cd_tracks = disc.cd_tracks
                     for track in cd_tracks: #then cycle through each track on CD
@@ -82,15 +82,15 @@ class FileIO:
             with open(file_name_CD, 'r') as file: #loading CD info
                 for line in file:
                     data = line.strip().split(',')
-                    row = DC.CD(data[0], data[1], data[2])
-                    lst_Inventory.append(row)
+                    row = DC.CD(data[0], data[1], data[2]) #creating cD object
+                    lst_Inventory.append(row) #appending CD object to inventory list
             with open(file_name_tracks, 'r') as file: #loading track info
                 for line in file:
                     data = line.strip().split(',')
-                    cd_id = int(data[0])
-                    cd = PC.DataProcessor.select_cd(lst_Inventory, cd_id)
-                    tplTrkInfo = (data[1], data[2], data[3])
-                    PC.DataProcessor.add_track(tplTrkInfo, cd)
+                    cd_id = int(data[0]) #extracting CD ID from txt file
+                    cd = PC.DataProcessor.select_cd(lst_Inventory, cd_id) #selecting CD obj
+                    tplTrkInfo = (data[1], data[2], data[3]) #formatting track info into tuple
+                    PC.DataProcessor.add_track(tplTrkInfo, cd) #adding track info to appropriate CD obj
         except FileNotFoundError as e:
             print('One or more data files is missing from the local folder!')
             print('Inventory not loaded.')

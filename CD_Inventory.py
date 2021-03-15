@@ -60,7 +60,7 @@ while True:
         except Exception as e:
             print('There has been an error.', e, e.__doc__, type(e), sep='\n')
             continue #returns to main loop
-        while True:
+        while True: #sub menu for CD
             IO.ScreenIO.print_CD_menu()
             strCDChoice = IO.ScreenIO.menu_CD_choice()
             if strCDChoice == 'x':
